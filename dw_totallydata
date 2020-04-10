@@ -1,1 +1,17 @@
-hey
+CREATE TABLE `client` (
+  `id_client` int(11) NOT NULL,
+  `prenom` varchar(45) DEFAULT NULL,
+  `nom` varchar(45) DEFAULT NULL,
+  `date_inscription` date DEFAULT NULL,
+  `pays` varchar(45) DEFAULT NULL,
+  `ville` varchar(45) DEFAULT NULL,
+  `cp` int(11) DEFAULT NULL,
+  `sexe` varchar(45) DEFAULT NULL,
+  `newsletter` int(11) DEFAULT NULL,
+  `date_inscription_newsletter` date DEFAULT NULL,
+  `ddn` date DEFAULT NULL,
+  PRIMARY KEY (`id_client`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+
