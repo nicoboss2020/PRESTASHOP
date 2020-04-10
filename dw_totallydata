@@ -13,8 +13,6 @@ CREATE TABLE `client` (
   PRIMARY KEY (`id_client`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-
-
 CREATE TABLE `calendrier` (
   `id_temps` date NOT NULL,
   `annee` int(11) DEFAULT NULL,
@@ -22,3 +20,19 @@ CREATE TABLE `calendrier` (
   `jour` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_temps`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `produit` (
+  `id_produit` int(11) NOT NULL,
+  `En_vente` int(11) DEFAULT NULL,
+  `Pas_en_stock` int(11) DEFAULT NULL,
+  `Quantite` int(11) DEFAULT NULL,
+  `Prix` float DEFAULT NULL,
+  `Nom_produit` varchar(45) DEFAULT NULL,
+  `Position_produit` int(11) DEFAULT NULL,
+  `level_depth` int(11) DEFAULT NULL,
+  `Position_categorie` int(11) DEFAULT NULL,
+  `Nom_categorie` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id_produit`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
