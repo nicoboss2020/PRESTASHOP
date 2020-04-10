@@ -15,3 +15,10 @@ CREATE TABLE `client` (
 
 
 
+CREATE TABLE `calendrier` (
+  `id_temps` date NOT NULL,
+  `annee` int(11) DEFAULT NULL,
+  `mois` varchar(45) DEFAULT NULL,
+  `jour` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_temps`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
