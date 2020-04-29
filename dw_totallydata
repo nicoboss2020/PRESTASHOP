@@ -22,6 +22,20 @@ CREATE TABLE `dw_totallydata`.`commande` (
   `date_commande` DATETIME NULL,
   PRIMARY KEY (`id_order_detail`));
 
+CREATE TABLE `groupe_categorie` (
+  `id_categorie` int(11) NOT NULL,
+  `id_produit` int(11) DEFAULT NULL,
+  `position_produit` int(11) DEFAULT NULL,
+  `id_parent` int(11) DEFAULT NULL,
+  `level_depth` int(11) DEFAULT NULL,
+  `position` int(11) DEFAULT NULL,
+  `id_lang` int(11) DEFAULT NULL,
+  `nom_categorie` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id_categorie`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+
 
 
 
