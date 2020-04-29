@@ -15,12 +15,12 @@ CREATE TABLE `client` (
 
 
 CREATE TABLE `dw_totallydata`.`commande` (
-  `id_order_detail` INT NOT NULL,
+  `id_detail_commande` INT NOT NULL,
   `quantite_produit` INT NULL,
   `prix_unitaire_taxes_incluses` DECIMAL NULL,
   `pourcentage_reduction` DECIMAL NULL,
   `date_commande` DATETIME NULL,
-  PRIMARY KEY (`id_order_detail`));
+  PRIMARY KEY (`id_detail_commande`));
 
 
 CREATE TABLE `groupe_categorie` (
