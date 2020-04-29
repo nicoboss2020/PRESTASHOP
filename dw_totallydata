@@ -22,6 +22,7 @@ CREATE TABLE `dw_totallydata`.`commande` (
   `date_commande` DATETIME NULL,
   PRIMARY KEY (`id_order_detail`));
 
+
 CREATE TABLE `groupe_categorie` (
   `id_categorie` int(11) NOT NULL,
   `id_produit` int(11) DEFAULT NULL,
@@ -34,6 +35,7 @@ CREATE TABLE `groupe_categorie` (
   PRIMARY KEY (`id_categorie`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+
 CREATE TABLE `produit` (
   `id_produit` int(11) NOT NULL,
   `En_vente` int(11) DEFAULT NULL,
@@ -43,6 +45,7 @@ CREATE TABLE `produit` (
   `Nom_produit` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_produit`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
 
 CREATE TABLE `calendrier` (
   `id_temps` datetime NOT NULL,
