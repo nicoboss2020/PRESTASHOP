@@ -13,6 +13,20 @@ CREATE TABLE `client` (
   PRIMARY KEY (`id_client`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+
+CREATE TABLE `dw_totallydata`.`commande` (
+  `id_order_detail` INT NOT NULL,
+  `quantite_produit` INT NULL,
+  `prix_unitaire_taxes_incluses` DECIMAL NULL,
+  `pourcentage_reduction` DECIMAL NULL,
+  `date_commande` DATETIME NULL,
+  PRIMARY KEY (`id_order_detail`));
+
+
+
+
+
+
 CREATE TABLE `calendrier` (
   `id_temps` date NOT NULL,
   `annee` int(11) DEFAULT NULL,
