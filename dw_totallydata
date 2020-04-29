@@ -1,26 +1,47 @@
+CREATE TABLE `calendrier` (
+  `id_temps` datetime NOT NULL,
+  `annee` int(11) DEFAULT NULL,
+  `mois` varchar(45) DEFAULT NULL,
+  `jour` int(11) DEFAULT NULL,
+  `flag_commande` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_temps`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
 CREATE TABLE `client` (
   `id_client` int(11) NOT NULL,
   `prenom` varchar(45) DEFAULT NULL,
   `nom` varchar(45) DEFAULT NULL,
-  `date_inscription` date DEFAULT NULL,
+  `date_inscription` datetime DEFAULT NULL,
   `pays` varchar(45) DEFAULT NULL,
   `ville` varchar(45) DEFAULT NULL,
   `cp` int(11) DEFAULT NULL,
   `sexe` varchar(45) DEFAULT NULL,
   `newsletter` int(11) DEFAULT NULL,
-  `date_inscription_newsletter` date DEFAULT NULL,
-  `ddn` date DEFAULT NULL,
+  `date_inscription_newsletter` datetime DEFAULT NULL,
+  `ddn` datetime DEFAULT NULL,
   PRIMARY KEY (`id_client`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE `dw_totallydata`.`commande` (
-  `id_detail_commande` INT NOT NULL,
-  `quantite_produit` INT NULL,
-  `prix_unitaire_taxes_incluses` DECIMAL NULL,
-  `pourcentage_reduction` DECIMAL NULL,
-  `date_commande` DATETIME NULL,
-  PRIMARY KEY (`id_detail_commande`));
+CREATE TABLE `commande` (
+  `id_detail_commande` int(11) NOT NULL,
+  `quantite_produit` int(11) DEFAULT NULL,
+  `prix_unitaire_taxes_incluses` float DEFAULT NULL,
+  `pourcentage_reduction` float DEFAULT NULL,
+  `date_commande` datetime DEFAULT NULL,
+  PRIMARY KEY (`id_detail_commande`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `faits` (
+  `id_detail_commande` int(11) NOT NULL,
+  `id_client` int(11) NOT NULL,
+  `id_produit` int(11) NOT NULL,
+  `id_temps` int(11) NOT NULL,
+  `id_categorie` int(11) NOT NULL,
+  PRIMARY KEY (`id_detail_commande`,`id_client`,`id_produit`,`id_temps`,`id_categorie`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
 CREATE TABLE `groupe_categorie` (
@@ -38,21 +59,10 @@ CREATE TABLE `groupe_categorie` (
 
 CREATE TABLE `produit` (
   `id_produit` int(11) NOT NULL,
-  `En_vente` int(11) DEFAULT NULL,
-  `Pas_en_stock` int(11) DEFAULT NULL,
-  `Quantite` int(11) DEFAULT NULL,
-  `Prix` float DEFAULT NULL,
-  `Nom_produit` varchar(45) DEFAULT NULL,
+  `nom_produit` varchar(45) DEFAULT NULL,
+  `en_vente` int(11) DEFAULT NULL,
+  `pas_en_stock` int(11) DEFAULT NULL,
+  `quantite` int(11) DEFAULT NULL,
+  `prix` float DEFAULT NULL,
   PRIMARY KEY (`id_produit`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-
-CREATE TABLE `calendrier` (
-  `id_temps` datetime NOT NULL,
-  `annee` int(11) DEFAULT NULL,
-  `mois` varchar(45) DEFAULT NULL,
-  `jour` int(11) DEFAULT NULL,
-  `flag_commande` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_temps`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
