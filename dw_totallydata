@@ -1,11 +1,28 @@
-CREATE TABLE `calendrier` (
-  `id_temps` datetime NOT NULL,
-  `annee` int(11) DEFAULT NULL,
-  `mois` varchar(45) DEFAULT NULL,
-  `jour` int(11) DEFAULT NULL,
-  `flag_commande` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_temps`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/* Procédure permettant de générer la table calendrier avec la date, l'année, le mois et le jour */
+
+DROP PROCEDURE IF EXISTS FillCalendar;
+DROP TABLE IF EXISTS Calendrier;
+CREATE TABLE IF NOT EXISTS Calendrier(calendar_date DATE NOT NULL PRIMARY KEY, annee int(4), mois int(2), jour int(2));
+
+DELIMITER $$
+    CREATE PROCEDURE FillCalendar(start_date DATE, end_date DATE)
+    BEGIN
+    DECLARE crt_date DATE;
+    DECLARE date_annee INT(4);
+    DECLARE date_mois INT(2);
+    DECLARE date_jour INT(2);
+    SET crt_date = start_date;
+    WHILE crt_date <= end_date DO
+        INSERT IGNORE INTO Calendrier VALUES(crt_date, date_annee, date_mois, date_jour);
+        SET crt_date = ADDDATE(crt_date, INTERVAL 1 DAY), date_annee = year(crt_date), date_mois = month(crt_date),  date_jour = day(crt_date);
+    END WHILE;
+    END$$
+DELIMITER ;
+
+CALL FillCalendar('2000-01-01', now());
+
+
 
 
 CREATE TABLE `client` (
@@ -21,40 +38,37 @@ CREATE TABLE `client` (
   `date_inscription_newsletter` datetime DEFAULT NULL,
   `ddn` datetime DEFAULT NULL,
   PRIMARY KEY (`id_client`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1
 
 
-CREATE TABLE `commande` (
-  `id_detail_commande` int(11) NOT NULL,
-  `quantite_produit` int(11) DEFAULT NULL,
-  `prix_unitaire_taxes_incluses` float DEFAULT NULL,
-  `pourcentage_reduction` float DEFAULT NULL,
-  `date_commande` datetime DEFAULT NULL,
-  PRIMARY KEY (`id_detail_commande`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
 CREATE TABLE `faits` (
   `id_detail_commande` int(11) NOT NULL,
   `id_client` int(11) NOT NULL,
   `id_produit` int(11) NOT NULL,
-  `id_temps` int(11) NOT NULL,
+  `id_temps` date NOT NULL,
   `id_categorie` int(11) NOT NULL,
-  PRIMARY KEY (`id_detail_commande`,`id_client`,`id_produit`,`id_temps`,`id_categorie`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id_commande` int(11) DEFAULT NULL,
+  `quantite_produit` int(11) DEFAULT NULL,
+  `prix_unitaire_taxes_incluses` float DEFAULT NULL,
+  `pourcentage_reduction` float DEFAULT NULL,
+  PRIMARY KEY (`id_detail_commande`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1
+
+
 
 
 CREATE TABLE `groupe_categorie` (
   `id_categorie` int(11) NOT NULL,
-  `id_produit` int(11) DEFAULT NULL,
-  `position_produit` int(11) DEFAULT NULL,
-  `id_parent` int(11) DEFAULT NULL,
-  `level_depth` int(11) DEFAULT NULL,
-  `position` int(11) DEFAULT NULL,
-  `id_lang` int(11) DEFAULT NULL,
   `nom_categorie` varchar(45) DEFAULT NULL,
+  `id_group` int(11) DEFAULT NULL,
+  `level_depth` int(11) DEFAULT NULL,
+  `id_parent` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_categorie`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1
+
+
 
 
 CREATE TABLE `produit` (
@@ -65,4 +79,4 @@ CREATE TABLE `produit` (
   `quantite` int(11) DEFAULT NULL,
   `prix` float DEFAULT NULL,
   PRIMARY KEY (`id_produit`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1
